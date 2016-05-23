@@ -61,10 +61,12 @@ Gulp基于sass，browserSync，autoprefixer，编译打包合并压缩检查自�
  - 线上编译
     `gulp build`
 
+  
 
 
-结构图：
+## 结构图：
 
+```
 ├── dist
 │   ├── css
 │   ├── img
@@ -82,3 +84,4 @@ Gulp基于sass，browserSync，autoprefixer，编译打包合并压缩检查自�
 ├── node_modules
 ├── package.json
 └── gulpfile.js
+```
