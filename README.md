@@ -3,23 +3,27 @@
 
 结构图：
 
+```
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
 ├── dist
 │   ├── css
 │   ├── html
 │   ├── fonts
-│   ├── js
-│   ├── maps	
+│   |── js
+│   |── maps
 ├── src
 │   ├── html
 │   ├── img
-│   ├── js			
+│   ├── js
 │   ├── script  //.vue目录
-│   └── style		
+|   └── style   //.scss目录
 ├── node_modules
-├── package.json
+├── gulpfile.js
 ├── webpack.config.js
-└── gulpfile.js
-
+└── package.json
+```
 
 ## webpack负责打包JS模块，Gulp负责多任务的定制
 
