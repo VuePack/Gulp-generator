@@ -1,0 +1,37 @@
+{
+  "name": "pause-stream",
+  "version": "0.0.11",
+  "description": "a ThroughStream that strictly buffers all readable events when paused.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "devDependencies": {
+    "stream-tester": "0.0.2",
+    "stream-spec": "~0.2.0"
+  },
+  "scripts": {
+    "test": "node test/index.js && node test/pause-end.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dominictarr/pause-stream.git"
+  },
+  "keywords": [
+    "stream",
+    "pipe",
+    "pause",
+    "drain",
+    "buffer"
+  ],
+  "author": "Dominic Tarr <dominic.tarr@gmail.com> (dominictarr.com)",
+  "license": [
+    "MIT",
+    "Apache2"
+  ],
+  "dependencies": {
+    "through": "~2.3"
+  },
+  "_from": "pause-stream@0.0.11",
+  "_resolved": "http://registry.npm.taobao.org/pause-stream/download/pause-stream-0.0.11.tgz"
+}

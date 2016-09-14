@@ -1,0 +1,46 @@
+{
+  "name": "gulp-autoprefixer",
+  "version": "3.1.1",
+  "description": "Prefix CSS",
+  "license": "MIT",
+  "repository": "sindresorhus/gulp-autoprefixer",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.12.0"
+  },
+  "scripts": {
+    "test": "xo && mocha"
+  },
+  "files": [
+    "index.js"
+  ],
+  "keywords": [
+    "gulpplugin",
+    "autoprefixer",
+    "postcss",
+    "css",
+    "prefix",
+    "prefixes",
+    "stylesheet",
+    "preprocess",
+    "postcss-runner"
+  ],
+  "dependencies": {
+    "autoprefixer": "^6.0.0",
+    "gulp-util": "^3.0.0",
+    "postcss": "^5.0.4",
+    "through2": "^2.0.0",
+    "vinyl-sourcemaps-apply": "^0.2.0"
+  },
+  "devDependencies": {
+    "gulp-sourcemaps": "^1.1.1",
+    "mocha": "*",
+    "xo": "*"
+  },
+  "_from": "gulp-autoprefixer@3.1.1",
+  "_resolved": "http://registry.npm.taobao.org/gulp-autoprefixer/download/gulp-autoprefixer-3.1.1.tgz"
+}

@@ -1,162 +1,199 @@
 /*
-* @Author: leon
-* @Date:   2016-08-15 01:51:38
-* @Last Modified by:   kevinli
-* @Last Modified time: 2016-08-15 01:52:19
-*/
+ * @Author: Leon
+ * @Date:   2016-08-17 13:45:44
+ * @Last Modified by:   kevin li
+ * @Last Modified time: 2016-09-14 19:55:23
+ */
+var gulp          = require('gulp'), //基础库
+sass              = require('gulp-ruby-sass'), //sass
+postcss           = require('gulp-postcss'),//css管理
+minifycss         = require('gulp-minify-css'), //css压缩
+uglify            = require('gulp-uglify'), //js压缩
+rename            = require('gulp-rename'), //重命名
+concat            = require('gulp-concat'), //合并文件
+clean             = require('gulp-clean'), //清空文件夹
+minifyCss         = require('gulp-minify-css'), //压缩css
+gulpif            = require('gulp-if'), //if语句
+gulpSequence      = require('gulp-sequence'), //采用任务同步方式
+rev               = require('gulp-rev'), //更改版本名
+revCollector      = require('gulp-rev-collector'), //更改html模板引用路径
+del               = require('del'), //删除
+sftp              = require('gulp-sftp'), //sftp上传
+browserSync       = require('browser-sync').create(), //自动刷新
+reload            = browserSync.reload,
+autoprefixer      = require('gulp-autoprefixer'), //- 添加兼容前缀
+px2rem            = require('postcss-px2rem'), //淘宝适配px转换rem
+runSequence       = require('run-sequence'), //同步任务
+md5               = require('gulp-md5-plus'), //md5
+webpack           = require('webpack'),//webpack
+webpackDevConfig  = require("./webpack.dev.conf.js");//生产环境
+webpackProdConfig = require("./webpack.prod.conf.js");//发布环境
 
 
-var gulp = require('gulp'),
-  path = require('path'),
-  watch = require('gulp-watch'), //监听文件变化
-  px2rem = require('postcss-px2rem'), //- px转换rem
-  sass = require('gulp-sass'), //- sass处理
-  postcss = require('gulp-postcss'),//css管理
-  autoprefixer = require('gulp-autoprefixer'), //- 添加兼容前缀
-  cssnano = require('gulp-cssnano'), //-压缩css
-  sourcemaps = require('gulp-sourcemaps'), //-添加map文件
-  md5 = require("gulp-md5-plus"), //md5去缓存
-  uglify = require('gulp-uglify'), //js压缩混淆
-  concat = require('gulp-concat'), //文件合并all-in-one
-  base64 = require('gulp-base64'), //把后缀#base64且小于32k的图片转换成base64
-  uncss = require('gulp-uncss'), //根据html和引用的css删除冗余css样式
-  webpack = require('webpack'),  //webpack模块化打包js
-  webpackConfig = require("./webpack.config.js"),
-  spritesmith = require('gulp.spritesmith'), //雪碧图
-  rename = require("gulp-rename"),  // rename重命名
-  del = require('del'),                        //删除
-  gulpSequence = require('gulp-sequence'),  //同步任务
-  gutil = require('gulp-util'),       //工具箱
-  fileinclude = require('gulp-file-include'),//include引入
-  browserSync = require('browser-sync').create();//自动刷新
 
 
+var condition     = true,
+    _srcHtmlFile = './index.html', //需要处理的html文件
+    _allHtmlFile = './**/*.html',
+    _srcHtmlPath = 'src/html/',
+    _srcComponentCss = ['src/style/*.scss',  'src/style/component/*.scss'],
+    _srcCommonCss = 'src/style/common/*.scss',
+    _distCssPath      = 'dist/style/',
+    _distMapFile = 'dist/js/*.map';
 
-var _htmlSrcFile = 'src/html/index.html', //需要处理的html文件
-    _htmlSrcDir = 'src/html/',
-    _scssArr = ['src/style/base/**.scss', 'src/style/component/*.scss'], //需要处理的scss数组
-    _CssLibArr = 'src/style/lib/**.css',
-    _jsArr = 'src/js/**/*.js', //需要处理的js数组
-    _imgArr = [], //需要处理的img数组
-    _imgSrcDir = 'src/img/**/*',
-    _scriptSrcFile= 'src/script/**/*',
-
-    _htmlDistFile = 'dist/html/index.html',
-    _htmlDistDir = 'dist/html/',
-    _imgDistDir = 'dist/img',
-    _cssDistDir = 'dist/css/', //发布的css目录
-    _cssMapsDir = 'dist/maps/', // 发布的cssMaps目录
-    _cssDistName = 'home.min.css'; //发布的css名称
-
-
-//本地服务器，文件监测，实时刷新编译打包
-gulp.task('watch',['includeTask'],function(callback){
-    browserSync.init({
-        notify: true,
-        open: true,
-        // proxy: "127.0.0.1:8000"
-        server: {
-            baseDir: './dist/'
-        }
-    });
-
-    gulp.watch(_htmlSrcDir + '/**/*.html',['buildTask']).on("change", browserSync.reload);
-    gulp.watch(_scssArr, ['buildTask']).on("change", browserSync.reload);
-    gulp.watch(_jsArr, ['buildTask']).on("change", browserSync.reload);
-    gulp.watch(_scriptSrcFile, ['buildTask']).on("change", browserSync.reload);
-
+/**
+ * 输出JS到发布目录
+ */
+gulp.task('build:js', function() {
+    gulp.src("dist/js/*.js")
+        .pipe(md5(10, _allHtmlFile))
+        .pipe(browserSync.reload({ stream: true }));
 });
 
-//用于在html文件中引入include文件
-gulp.task('includeTask', function (done) {
-    gulp.src(['src/html/*.html'])
-        .pipe(fileinclude({
-          prefix: '@@',
-          basepath: '@file'
+/**
+ * 公共文件
+ */
+gulp.task("build:common", function() {
+    gulp.src("src/flash/**")
+        .pipe(gulp.dest("dist/flash/"));
+
+    gulp.src("src/fonts/**")
+        .pipe(gulp.dest("dist/fonts/"));
+
+    gulp.src("src/img/**")
+        .pipe(gulp.dest("dist/img/"));
+
+    gulp.src("src/style/lib/**")
+        .pipe(gulp.dest("dist/style/"));
+
+    gulp.src("src/js/public_lib/**")
+        .pipe(gulp.dest("dist/js/public_lib/"));
+});
+
+/**
+ * 编译scss
+ */
+gulp.task('build:scss', function() {
+    // var processors = [px2rem({remUnit: 75})];
+
+    //单独打包成common文件（公共）
+    sass(_srcCommonCss, {
+            style: 'expanded',
+            // sourcemap: true
+        })
+        .on('error：', sass.logError)
+        .pipe(gulpif(
+            condition, minifyCss({
+                compatibility: 'ie7'
+            })
+        ))
+        .pipe(concat('common.min.css'))
+        // .pipe(postcss(processors))
+        .pipe(gulp.dest(_distCssPath))
+        .pipe(md5(10, _allHtmlFile))
+        .pipe(reload({ stream: true }));
+
+    //单独打包成index文件（组件）
+    sass(_srcComponentCss, {
+            style: 'expanded',
+            // sourcemap: true
+        })
+        .on('error：', sass.logError)
+        .pipe(gulpif(
+            condition, minifyCss({
+                compatibility: 'ie7'
+            })
+        ))
+        .pipe(concat('index.min.css'))
+        .pipe(autoprefixer({
+            browsers: ['Firefox >= 20','> 5%','last 2 versions' ],
+            cascade: false,
+            remove: false
         }))
-        .pipe(gulp.dest('dist/html'))
-        .on('end', done);
+        // .pipe(postcss(processors))
+        .pipe(gulp.dest(_distCssPath))
+        .pipe(md5(10, _allHtmlFile))
+        .pipe(reload({ stream: true }));
 });
 
-// css雪碧图，生成的雪碧图和对应的css，需手动替换
-gulp.task('sprite', function() {
-  var spriteData = gulp.src(_imgArr)
-    .pipe(spritesmith({
-      imgName: 'sprite.png',
-      cssName: 'sprite.css'
-    }));
-  return spriteData.pipe(gulp.dest('dist/sprite/'));
+/**
+ * 生产环境包含sourcmap调试JS
+ */
+gulp.task("webpack:dev", function(callback) {
+    var myConfig = Object.create(webpackDevConfig);
+    // run webpack
+    webpack(
+        myConfig,
+        function(err, stats) {
+            callback();
+        });
 });
 
-//scss预处理（合并，解析，兼容前缀，压缩，sourcemaps）
-gulp.task('scssTask', function() {
-  var processors = [px2rem({remUnit: 75})];
-  gulp.src(_scssArr)
-    .pipe(sourcemaps.init())
-    .pipe(sass())
-    .on('error', sass.logError)
-    .pipe(concat(_cssDistName))
-    .pipe(autoprefixer({
-        browsers: ['Firefox >= 20','> 5%','last 2 versions', ],
-        cascade: true,
-        remove:true
-    }))
-    .pipe(postcss(processors))
-    .pipe(base64({extensions: [/\.(jpg|png)#base64/i]}))
-    .pipe(cssnano()) //-压缩css
-    .pipe(rename(_cssDistName))
-    .pipe(sourcemaps.write(path.relative(_cssDistDir, _cssMapsDir), {
-      sourceMappingURL: function(file) {
-        return '/' + _cssMapsDir + file.relative + '.map';
-      }
-    }))
-    .pipe(gulp.dest(_cssDistDir))
-    .pipe(md5(10, _htmlDistFile))
-
-  //默认src下lib目录的css文件输出到dist
-  gulp.src(_CssLibArr)
-    .pipe(gulp.dest(_cssDistDir))
+/**
+ * 发布不包含sourcmap
+ */
+gulp.task("webpack:prod", function(callback) {
+    var myConfig = Object.create(webpackProdConfig);
+    // run webpack
+    webpack(
+        myConfig,
+        function(err, stats) {
+            callback();
+        });
 });
 
-// webpack打包js
-gulp.task("buildJS", function(callback) {
-    var myConfig = webpack(Object.create(webpackConfig));
+/**
+ * 输出JS到发布目录（包含sourcemap）
+ */
+gulp.task('build:dev', function(callback) {
+    runSequence('webpack:dev', 'build:js', callback);
+});
 
-    myConfig.run(function(err, stats) {
-        if(err) throw new gutil.PluginError("webpack:buildJS", err);
-        gutil.log("[webpack:buildJS]", stats.toString({
-            colors: true
-        }));
-        callback();
+/**
+ * 输出JS到发布目录（不包含sourcemap）
+ */
+gulp.task('build:prod', function(callback) {
+    runSequence('webpack:prod', 'build:js', callback);
+});
+
+/**
+ * 删除map
+ */
+gulp.task('clear', function(callback) {
+    del.sync([_distMapFile]);
+});
+
+
+//=======================================//
+
+
+/**
+ *启用开发环境
+ */
+gulp.task('watch', function(callback) {
+    browserSync.init({
+        notify: true, //刷新是否提示
+        open: true, //是否自动打开页面
+        server:{
+          baseDir: "./"
+        }
+        // proxy: "127.0.0.1:8000" //代理ip域名
+
     });
+
+    //默认修改JS文件，执行webpack输出编译文件，hash
+    //默认修改.scss文件更新css ,hash
+    //默认不监测html自动刷新，因为编译scss会自动给html加入hash值，会导致刷新多次
+    gulp.watch('src/**/*.js', ['build:dev']);
+    gulp.watch('src/**/*.vue', ['build:dev']);
+    gulp.watch('src/**/*.scss', ['build:scss']);
+    gulp.watch(_srcHtmlFile).on('change',reload);
 });
 
-//将图片拷贝到发布目录
-gulp.task('imgTask', function (done) {
-    gulp.src([_imgSrcDir]).pipe(gulp.dest(_imgDistDir)).on('end', done);
+/**
+ *编译合并压缩的js,css输出发布目录
+ */
+gulp.task('build', function(callback) {
+    runSequence('build:scss', 'build:prod', 'build:common', callback);
 });
-
-
-//指定webpack打包文件添加mad5
-gulp.task('webpackTask', ['buildJS'], function() {
-  gulp.src('dist/js/init.min.js')
-    .pipe(md5(10, _htmlDistFile));
-});
-
-//打包编译
-gulp.task('buildTask',['includeTask'], function(callback){
-    gulpSequence('scssTask', 'webpackTask','imgTask')(callback)
-    console.log('-------------SCSS编译，JS打包完成-------------')
-});
-
-//清除文件
-gulp.task('clean', function(){
-    del([_cssDistDir,_jsDistDir]);
-})
-
-//打包编译
-gulp.task('build', ['buildTask']);
-
-//开发任务
-gulp.task('dev', ['watch']);
 

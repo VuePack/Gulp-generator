@@ -1,0 +1,30 @@
+{
+  "name": "path-is-inside",
+  "description": "Tests whether one path is inside another path",
+  "keywords": [
+    "path",
+    "directory",
+    "folder",
+    "inside",
+    "relative"
+  ],
+  "version": "1.0.1",
+  "author": "Domenic Denicola <domenic@domenicdenicola.com> (http://domenic.me)",
+  "license": "WTFPL",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/domenic/path-is-inside.git"
+  },
+  "bugs": "http://github.com/domenic/path-is-inside/issues",
+  "main": "lib/path-is-inside.js",
+  "scripts": {
+    "test": "mocha",
+    "lint": "jshint lib"
+  },
+  "devDependencies": {
+    "jshint": "~2.3.0",
+    "mocha": "~1.15.1"
+  },
+  "_from": "path-is-inside@1.0.1",
+  "_resolved": "http://registry.npm.taobao.org/path-is-inside/download/path-is-inside-1.0.1.tgz"
+}

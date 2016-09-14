@@ -1,0 +1,21 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "test for gulp-md5-plus",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "gulp img"
+  },
+  "keywords": [
+    "test"
+  ],
+  "author": "tjuwpf@163.com",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp-md5-plus": "^0.2.0"
+  },
+  "dependencies": {
+    "del": "^2.2.0",
+    "gulp": "^3.9.1"
+  }
+}
