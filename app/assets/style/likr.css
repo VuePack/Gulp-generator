@@ -1,0 +1,152 @@
+/*
+* @Author: Leon
+* @Date:   2016-12-23 17:07:49
+ * @Last Modified by: Leon
+ * @Last Modified time: 2017-01-13 11:19:48
+*/
+
+
+@font-face {font-family: "iconfont";
+  src: url('//at.alicdn.com/t/font_dkq9f763b9diy66r.eot?t=1484272635097'); /* IE9*/
+  src: url('//at.alicdn.com/t/font_dkq9f763b9diy66r.eot?t=1484272635097#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('//at.alicdn.com/t/font_dkq9f763b9diy66r.woff?t=1484272635097') format('woff'), /* chrome, firefox */
+  url('//at.alicdn.com/t/font_dkq9f763b9diy66r.ttf?t=1484272635097') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('//at.alicdn.com/t/font_dkq9f763b9diy66r.svg?t=1484272635097#iconfont') format('svg'); /* iOS 4.1- */
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-warning:before { content: "\e68d"; }
+
+.icon-more:before { content: "\e6a7"; }
+
+.icon-add:before { content: "\e613"; }
+
+.icon-cart:before { content: "\e614"; }
+
+.icon-categoryfill:before { content: "\e615"; }
+
+.icon-index:before { content: "\e616"; }
+
+.icon-cartfill:before { content: "\e617"; }
+
+.icon-category:before { content: "\e618"; }
+
+.icon-me:before { content: "\e619"; }
+
+.icon-indexfill:before { content: "\e61a"; }
+
+.icon-mefill:before { content: "\e61b"; }
+
+.icon-accountSafety:before { content: "\e61c"; }
+
+.icon-enterpriseInfo:before { content: "\e61d"; }
+
+.icon-certified:before { content: "\e61e"; }
+
+.icon-childAccount:before { content: "\e61f"; }
+
+.icon-invoiceInfo:before { content: "\e620"; }
+
+.icon-deliveryAddress:before { content: "\e621"; }
+
+.icon-notCertified:before { content: "\e622"; }
+
+.icon-orderDeliveryTwo:before { content: "\e623"; }
+
+.icon-orderFinish:before { content: "\e624"; }
+
+.icon-orderDeliveryOne:before { content: "\e625"; }
+
+.icon-orderPayment:before { content: "\e626"; }
+
+
+html,
+body {
+  height: 100%;
+  background: #f5f5f5;
+}
+[v-cloak]{
+    display: none;
+}
+
+/*
+icon
+*/
+.icon-childAccount,.icon-enterpriseInfo{
+  color: #64A0E9
+
+}
+.icon-deliveryAddress,.icon-invoiceInfo{
+  color: #B2CA3B
+
+}
+.icon-accountSafety,.icon-warning{
+  color: #EFA84E
+}
+.icon-certified{
+  color: #F2BD2D;
+}
+.icon-notCertified{
+  color: #B4B4B4;
+}
+.icon-add{
+  color: #989898;
+}
+/*
+button
+*/
+
+.btn {
+  display: block;
+  position: relative;
+  color: inherit;
+  font-size: 28px;
+  outline: 0;
+  border: 0;
+  height: 54px;
+  padding: 0 35px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.btn-sm {}
+
+.btn-lg {}
+
+.btn-round {
+  border-radius: 4px;
+}
+
+.btn-default {
+  color: #656b79;
+  background-color: #f6f8fa;
+  box-shadow: 0 0 1px #b8bbbf;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #c72222;
+}
+
+.inline-block {
+  display: inline-block;
+}
+
+.border1px {
+  border: 1px solid #e8e8e8;
+}
+
+.bottom1px {
+  border-bottom: 1px solid #e3e3e3;
+}
+
+.top1px {
+  border-top: 1px solid #e3e3e3;
+}

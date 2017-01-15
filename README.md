@@ -1,7 +1,4 @@
-
-----
-
-# Vue-Gulp-Webpack前端脚手架
+# 移动端多页应用脚手架（非单页应用）
 ## 目录
 
 1. [安装](#install)
@@ -15,11 +12,11 @@
 <a name="install"></a>
 ## 1. 安装
 
-**版本**：NODE: v6.2.0 NPM: 3.8.9
+**版本（全局安装）**：NODE ：6.2.0， NPM ：3.8.9， webpack ：1.11.0
 
-由于npm安装源太慢，建议换成淘宝cnpm安装源
+由于 `npm` 安装源太慢，建议换成淘宝 `cnpm` 安装源
 
-工程目录模块安装：
+进入工程目录模块安装：
 
 ```
 cnpm install
@@ -28,70 +25,84 @@ cnpm install
 
 <a name="directory"></a>
 ## 2.工程目录规范
-    |—— mode_modules                 npm安装的模块
-    |—— gulpfile.js                  Gulp
-    |—— webpack.dev.conf.js          webpack生产环境
-    |—— webpack.prod.conf.js         webpack发布环境
-    |—— index.html                   首页
-    |   |—— src   开发目录
-    |   |   |—— script           Vue代码
-    |   |   |   |—— component    公共组件目录
-    |   |   |—— js               js源代码
-    |   |   |   |—— public_lib   第三方库
-    |   |   |   |—— component    公共组件目录
-    |   |   |   |—— lib    公共组件目录
-    |   |   |   |—— xx.js        组件合成chunk.js
-    |   |   |—— style            scss源代码
-    |   |   |   |—— common         基础库
-    |   |   |   |—— component    公共组件目录
-    |   |   |   |—— lib          第三方库
-    |   |   |—— img              scss源代码
-    |   |   |—— flash            flash源文件
-    |   |   |—— fonts            字体源文件
-    |   |—— dist                 编译合并压缩后的js、css
-
+    |—— mode_modules                 npm 安装的模块
+    |—— .eslintrc.js                 es6 代码规范配置文件
+    |—— server.js                    本地服务配置文件
+    |—— webpack.config.js            webpack 配置文件
+    |—— app                          项目源文件
+    |   |—— assets                   静态文件目录
+    |   |   |—— style                样式文件
+    |   |   |—— font                 字体文件
+    |   |   |—— img                  图片文件
+    |   |   |—— lib                  第三方库
+    |   |—— config                   配置文件目录
+    |   |   |—— api.js               接口 API 配置文件
+    |   |   |—— routes.js            路由配置文件
+    |   |—— pages                    多页面文件目录
+    |   |   |—— member               多页面父级目录
+    |   |   |   |—— user             多页面子目录
+    |   |   |       |—— app.html     单个页面配置 html
+    |   |   |       |—— app.js       单个页面配置 js
+    |   |   |       |—— app.vue      单个页面配置 vue
+    |   |—— scripts                  vue 文件目录
+    |   |   |—— components           vue 组件
+    |   |   |—— view                 vue 视图
+    |   |—— store                    vue 状态管理目录
+    |   |—— util                     公共函数调用目录
+    |   |   |—— ajax.js              公共函数
+    |   |—— dist                     发布目录
 
 ## 3.  前置条件
 
-* NPM管理第三方JS依赖，统一在 **LIB**文件导入，非NPM第三方插件放置 **public_lib**目录
-* 此项目非前后端分离，故生产环境中每次都需要重新编译文件，输出发布目录
-* 主要技术 vue.js ,jQuery,JavaScript;
+* `NPM` 管理依赖库，第三方的 `js` 文件放在 `assets/lib` 下
+* 主要技术 `Vue`，`JavaScript`，`ES6`
+* 创建新的多页面，必须在 `pages` 目录下
+  格式如下：
+
+|—— pages                    多页面文件目录
+    |—— member               多页面父级目录
+    |   |—— user             多页面子目录
+    |       |—— app.html     单个页面配置 html
+    |       |—— app.js       单个页面配置 js
+    |       |—— app.vue      单个页面配置 vue
+
 
 <a name="question"></a>
 ## 4. 解决问题
 
-* 减少css,js文件请求数，跟据文件名+MD5戳方式清除缓存，自动替换页面里的文件路径
-* 无需动刷新页面，文件改变后自动同步刷新多设备浏览器
-* Gulp处理SCSS的编译、压缩、合并、兼容前缀、md5
-* webpack处理JS多模块合并、压缩、打包
+* 减少 `css`，`js`文件请求数，跟据文件名 `hash` 方式清除缓存，图片小于10k转换 `base64` 格式
+* 页面热加载模式，文件改变后自动同步多设备浏览器
+* `vue` 多页面的搭建，自动添加并替换页面里的文件路径
+* 处理 `js` 多模块合并、压缩、打包
+* 前后端正式分离开发与正式环境
 
 <a name="foreend"></a>
 ## 5. 前端技术要求
 
-* 略懂linux,nodejs,gulp,webpack,git
+* 略懂`linux`，`nodejs`，`webpack`，`git`，`es6`，`vue`
 
 <a name="help"></a>
-## 6. 如何使用
-* Gulp：负责多任务的定制
-* webpack：负责打包JS模块
-* 公共组件共同导入的chunk父级文件，统一在webpack的 **config**配置引入
+## 6. 如何使用Ï
 
-> 生产
+* 多页应用，`pages` 目录下创建多个父级目录实例多个 `html`
+* 统一 `ajax` 库为 `axios`
+* 图标统一用 `iconfont` ，托管在 **http://www.iconfont.cn/** 在线生成阿里 `CDN`
+* 项目使用 `es6` 开发，代码书写规范按照 `.eslintrc.js`
 
-    gulp watch ：//启动开发环境，监测文件动向，实时刷新编译
-    gulp build:dev：//编译合并压缩js输出发布目录（包含sourceMap）
-    gulp build:scss：//编译合并压缩scss输出发布目录
-    gulp build:common：//公共文件输出发布目录
+> 开发
+  ```js
+  npm run dev
+  ```
+
+* 默认执行 `mobile` 目录下访问 **http://localhost:3000/mobile**
+
 > 发布
-
-    gulp build：//执行以上命令（不包含sourceMap）
+  ```js
+  npm run build
+  ```
 
 <a name="deficiency"></a>
 ## 7. 不足之处
 
-* 项目非前后端分离，现在的生产环境也可以是发布环境，每次都需要编译文件会有点慢
-* **由于webpack的同步编译机制，js文件太大导致压缩缓慢**
-* 默认不监测html自动刷新，因为编译scss会自动给html加入hash值，会导致刷新多次
-* 暂时不支持scss的**devtool**调试
-* .vue不是用webpack的热替换，会有些慢
+* 完美
 

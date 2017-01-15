@@ -1,0 +1,107 @@
+// @import 'theme.scss'
+
+.list-icon {
+  ul{
+    li:last-child a{
+      border-bottom: 0;
+    }
+  }
+  a{
+    display: flex;
+    align-content: center;
+    color: #676767;
+    padding: 20px 0;
+    border-bottom: 1px solid #e3e3e3;
+  }
+
+  .item-content {
+    font-size: 28px;
+    padding-left: 68px;
+  }
+  .item-icon{
+    flex: 1;
+    i{
+      display: inline-block;
+      vertical-align: middle;
+    }
+    span{
+      vertical-align: middle;
+    }
+  }
+  .item-arrow{
+    display: flex;
+    align-items: center;
+    padding: 0 30px 0 0;
+    img{
+      width: 13px;
+    }
+    .icon{
+      padding: 0;
+      text-align: right;
+    }
+  }
+  .icon{
+    display: inline-block;
+    width: 96px;
+    font-size: 40px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 0 30px;
+  }
+  .label{
+  }
+}
+
+.list-block{
+  .item-content{
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    height: 84px;
+    padding: 0 48px;
+    .item-title{
+      color: #333;
+      display: flex;
+      padding-right: 48px;
+    }
+    .item-input{
+      flex: 1;
+      input{
+        border: 0;
+        color: #ccc;
+        background: transparent;
+      }
+    }
+  }
+  .item-block{
+    padding: 0 48px;
+    .item-title{
+      color: #333;
+      font-size: 28px;
+      height: 84px;
+      line-height: 84px;
+    }
+    .text{
+      color: #ccc;
+      font-size: 28px;
+    }
+    .iconfont{
+      font-size: 100px;
+    }
+    .icon-warning{
+      font-size: 35px;
+    }
+    .tips{
+      display: inline-block;
+      margin: 30px 0;
+    }
+  }
+  .item-upload{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction:column;
+    height: 182px;
+    border: 2px dotted #7f7f7f;
+  }
+}
