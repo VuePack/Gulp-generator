@@ -1,20 +1,14 @@
 module.exports = {
   root: true,
-  parser: "babel-eslint",
+  parser: 'babel-eslint',
   parserOptions: {
-    sourceType: "module"
+    sourceType: 'module'
   },
+  //包含了eslint-plugin-standard和eslint-plugin-promise的规则
   extends: "standard",
-  // 环境定义了预定义的全局变量。
-  "env": {
-    "browser": true,
-    "node": true,
-    "commonjs": true,
-    "es6": true,
-    "amd": true
-  },
+  // required to lint *.vue files
   plugins: [
-    "html"
+    'html'
   ],
   // 自定义规则
   /**
@@ -47,12 +41,18 @@ module.exports = {
     "no-warning-comments": 0,
     // 禁止出现未使用过的变量
     "no-unused-vars": 0,
+    // 禁止 if 语句中有 return 之后有 else
+    "no-else-return": 0,
+    // 强制使用有效的 JSDoc 注释
+    "valid-jsdoc": [0, {
+      "requireParamDescription": true,
+      "requireReturnDescription": true
+    }],
     // 强制在对象字面量的属性中键和值之间使用一致的间距
     "key-spacing": [0, {
       "beforeColon": false,
       "afterColon": true
     }],
-
 
     /**
      * 警告
@@ -121,9 +121,6 @@ module.exports = {
     /**
      * 代码风格
      */
-
-    // 禁止 if 语句中有 return 之后有 else
-    "no-else-return": 1,
     // 禁止使用多个空格
     "no-multi-spaces": 1,
     // 强制把变量的使用限制在其定义的作用域范围内
@@ -175,11 +172,6 @@ module.exports = {
     "no-with": 2,
     // 要求操作符周围有空格
     "space-infix-ops": 2,
-    // 强制使用有效的 JSDoc 注释
-    "valid-jsdoc": [2, {
-      "requireParamDescription": true,
-      "requireReturnDescription": true
-    }],
     // 强制所有控制语句使用一致的括号风格
     "curly": 1,
   }

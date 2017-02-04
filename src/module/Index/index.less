@@ -1,0 +1,130 @@
+@import '../../assets/style/_vars.less';
+
+.member-section {
+  .panel {
+    background: @white;
+  }
+  .user-panel {
+    display: flex;
+    height: 265px;
+    align-items: center;
+    justify-content: center;
+    color: @white;
+    background: @red;
+    .icon{
+      font-size: 45px;
+      vertical-align: middle;
+    }
+  }
+  .user-title {
+    font-size: 36px;
+    text-align: center;
+    padding-bottom: 10px;
+  }
+  .user-enterprise img {
+    width: 34px;
+    height: 34px;
+    vertical-align: text-top;
+    margin-left: 12px;
+  }
+  .user-phone,
+  .user-enterprise {
+    color: @white;
+    font-size: 28px;
+    padding: 10px 0;
+  }
+  .order-title {
+    img {
+      width: 17px;
+      vertical-align: text-top;
+      margin-left: 22px;
+    }
+    .icon {
+      font-size: 45px;
+      vertical-align: middle;
+    }
+  }
+  .order-title,
+  .info-title {
+    position: relative;
+    font-size: 32px;
+    color: @33;
+    height: 90px;
+    line-height: 90px;
+    padding: 0 0 0 32px;
+    a {
+      position: absolute;
+      top: 0;
+      right: 24px;
+      font-size: 28px;
+      color: @a6;
+    }
+  }
+  .order-label {
+    border-top: 1px solid @e3;/*no*/
+    border-bottom: 1px solid @e8;/*no*/
+    padding: 17px 0;
+    ul {
+      display: flex;
+      li {
+        flex: 1;
+        text-align: center;
+      }
+    }
+    a {
+      position: relative;
+    }
+    .icon {
+      display: block;
+      font-size: 56px;
+      color: #646464;
+      padding: 10px;
+    }
+    .label {
+      font-size: 28px;
+      color: #616161;
+    }
+  }
+  .dot-num {
+    display: block;
+    position: absolute;
+    left: 1px;
+    top: 0;
+    font-size: 20px;
+    color: @white;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border: 3px solid @white;/*no*/
+    border-radius: 100%;
+    background: #ea4146;
+    box-sizing: content-box;
+    z-index: 8;
+  }
+  .info-title {
+    margin-top: 19px;
+  }
+  .info-list {
+    border-top: 1px solid @e3;/*no*/
+    border-bottom: 1px solid @e8;/*no*/
+  }
+  .test {
+    font-size: 30px;
+    display: flex;
+    align-content: center;
+  }
+  .test-title {
+    flex: 1;
+    span {
+      vertical-align: middle;
+    }
+  }
+  .test-value {
+    display: flex;
+    align-content: center;
+    .icon {
+      font-size: 30px;
+    }
+  }
+}

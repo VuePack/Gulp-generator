@@ -1,0 +1,95 @@
+/*
+ * @Author: Leon
+ * @Date: 2017-01-19 16:59:17
+ * @Last Modified by: Leon
+ * @Last Modified time: 2017-02-03 12:08:50
+ */
+
+@import 'reset.less';
+@import '_vars.less';
+@import 'font.less';
+
+html,
+body {
+  height: 100%;
+  background: @f5;
+}
+
+[v-cloak]{
+    display: none;
+}
+
+::-moz-placeholder { color: @cc; }
+::-webkit-input-placeholder { color:@cc; }
+:-ms-input-placeholder { color:@cc; }
+
+.topbar {
+  font-size: 30px;
+  height: 80px;
+  line-height: 80px;
+  text-align: center;
+  box-shadow: 0 0 16px rgba(0,0,0,0.3);
+}
+
+/*
+icon
+*/
+.icon-childAccount,.icon-enterpriseInfo{
+  color: #64A0E9
+
+}
+.icon-deliveryAddress,.icon-invoiceInfo{
+  color: #B2CA3B
+
+}
+.icon-accountSafety,.icon-warning{
+  color: #EFA84E
+}
+.icon-certified{
+  color: #F2BD2D;
+}
+.icon-notCertified{
+  color: #B4B4B4;
+}
+.icon-add{
+  color: #989898;
+}
+/*
+button
+*/
+
+.btn {
+  display: block;
+  position: relative;
+  color: inherit;
+  font-size: 28px;
+  outline: 0;
+  border: 0;
+  height: 54px;
+  padding: 0 35px;
+  overflow: hidden;
+  text-align: center;
+}
+
+.btn-sm {}
+
+.btn-lg {}
+
+.btn-round {
+  border-radius: 4px;
+}
+
+.btn-default {
+  color: #656b79;
+  background-color: #f6f8fa;
+  box-shadow: 0 0 1px #b8bbbf;
+}
+
+.btn-danger {
+  color: #fff;
+  background-color: #c72222;
+}
+
+.inline-block {
+  display: inline-block;
+}

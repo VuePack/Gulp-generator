@@ -1,0 +1,35 @@
+@import '../../assets/style/_vars.less';
+
+.tabbar {
+  display: flex;
+  text-align: center;
+  background-color: @ee;
+  padding: 10px 0;
+  &.flxed {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1
+  }
+  .active{
+    .icon,.label{
+      color: @danger;
+    }
+  }
+  .tab-item {
+    display: block;
+    flex: 1;
+    align-items: center;
+    color: @a6;
+
+  }
+  .icon{
+    display: block;
+    color: @80;
+    font-size: 50px;
+  }
+  .label{
+    font-size: 22px;
+  }
+}
