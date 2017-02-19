@@ -53,6 +53,22 @@ module.exports = {
       "beforeColon": false,
       "afterColon": true
     }],
+    // 限制圈复杂度，也就是类似if else能连续接多少个
+    "complexity": 0,
+    // 禁止出现未使用过的表达式
+    "no-unused-expressions": 0,
+    // 禁止自身比较
+    "no-self-compare": 0,
+     // 禁用逗号操作符
+    "no-sequences": 0,
+    // 强制把变量的使用限制在其定义的作用域范围内
+    "block-scoped-var": 0,
+    "no-useless-escape": 0,
+    // 禁止扩展原生类型
+    "no-extend-native": 0,
+    // 禁止使用 var 多次声明同一变量
+    "no-redeclare": 0,
+    "block-spacing": 0,
 
     /**
      * 警告
@@ -65,8 +81,7 @@ module.exports = {
     "no-empty": 1,
     // 不允许在变量定义之前使用它们
     "no-use-before-define": [1, "nofunc"],
-    // 限制圈复杂度，也就是类似if else能连续接多少个
-    "complexity": [1, 10],
+
 
 
     /**
@@ -123,10 +138,8 @@ module.exports = {
      */
     // 禁止使用多个空格
     "no-multi-spaces": 1,
-    // 强制把变量的使用限制在其定义的作用域范围内
-    "block-scoped-var": 2,
     // 要求 return 语句要么总是指定返回的值，要么不指定
-    "consistent-return": 2,
+    "consistent-return": 0,
     // 定义对象的set存取器属性时，强制定义get
     "accessor-pairs": 2,
     // 强制object.key 中 . 的位置，参数:
@@ -137,8 +150,6 @@ module.exports = {
     "no-lone-blocks": 2,
     //  禁用标签语句
     "no-labels": 2,
-    // 禁止扩展原生类型
-    "no-extend-native": 2,
     // 禁止数字字面量中使用前导和末尾小数点
     "no-floating-decimal": 2,
     // 禁止在循环中出现 function 声明和表达式
@@ -147,21 +158,9 @@ module.exports = {
     "no-extra-semi": 1,
     // 要求或禁止使用分号而不是 ASI（这个才是控制行尾部分号的，）
     "semi": 1,
-    // 禁止自身比较
-    "no-self-compare": 2,
-     // 禁用逗号操作符
-    "no-sequences": 2,
     // 禁止抛出非异常字面量
     "no-throw-literal": 2,
-    // 禁止使用 var 多次声明同一变量
-    "no-redeclare": [2, {
-      "builtinGlobals": true
-    }],
-    // 禁止出现未使用过的表达式
-    "no-unused-expressions": [2, {
-      "allowShortCircuit": true,
-      "allowTernary": true
-    }],
+
     // 禁止不必要的 .call() 和 .apply()
     "no-useless-call": 2,
     // 禁止不必要的字符串字面量或模板字面量的连接
