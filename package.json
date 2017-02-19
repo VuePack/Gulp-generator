@@ -13,10 +13,18 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "axios": "^0.15.2",
     "lib-flexible": "^0.3.2",
+    "axios": "^0.15.2",
+    "es6-promise": "^4.0.0",
+    "fastclick": "^1.0.6",
+    "front-matter": "^2.1.0",
+    "loaders.css": "^0.1.2",
+    "marked": "^0.3.6",
+    "normalize.css": "^5.0.0",
+    "prismjs": "^1.5.1",
+    "timeago.js": "^2.0.2",
     "vue": "^2.1.10",
-    "vue-router": "^2.2.0",
+    "vue-router": "^2.1.2",
     "vuex": "^2.1.1"
   },
   "devDependencies": {
