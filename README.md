@@ -1,4 +1,4 @@
-# 移动端多页应用脚手架
+# 移动端多页应用脚手架(支持路由)
 ## 目录
 
 1. [安装](#install)
@@ -56,17 +56,17 @@ cnpm install
 * `NPM` 管理依赖库，第三方的 `js` 文件放在 `assets/js` 下
 * 主要技术 `Vue`，`JavaScript`，`ES6`
 * 创建新的多页面，必须在 `module` 目录下
-  格式如下：
+   
+*格式如下:*
 
-|—— module                   多页面文件目录
-|   |—— Member               多页面父级目录
-|   |   |—— components       Member 所属组件目录
-|   |   |—— manage           Member 所属配置路由状态管理目录
-|   |   |—— member.html      单个页面配置 html
-|   |   |—— member.js        单个页面配置 js
-|   |   |—— app.vue          单个页面配置 vue
-
-
+    |—— module                       多页面文件目录
+    |   |—— Member                   多页面父级目录
+    |   |   |—— components           Member 所属组件目录
+    |   |   |—— manage               Member 所属配置路由状态管理目录
+    |   |   |—— member.html          单个页面配置 html
+    |   |   |—— member.js            单个页面配置 js
+    |   |   |—— app.vue              单个页面配置 vue
+   
 <a name="question"></a>
 ## 4. 解决问题
 
@@ -84,7 +84,7 @@ cnpm install
 * 略懂`linux`，`nodejs`，`webpack`，`git`，`es6`，`vue`
 
 <a name="help"></a>
-## 6. 如何使用Ï
+## 6. 如何使用
 
 * 多页应用，`module` 目录下创建多个父级目录实例多个 `html`
 * 统一 `ajax` 库为 `axios`
