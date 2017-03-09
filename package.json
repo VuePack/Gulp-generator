@@ -23,8 +23,8 @@
     "normalize.css": "^5.0.0",
     "prismjs": "^1.5.1",
     "timeago.js": "^2.0.2",
-    "vue": "^2.2.1",
-    "vue-router": "^2.2.0",
+    "vue": "^2.2.2",
+    "vue-router": "^2.3.0",
     "vuex": "^2.2.1"
   },
   "devDependencies": {
@@ -96,7 +96,7 @@
     "url-loader": "^0.5.7",
     "vue-loader": "^10.1.2",
     "vue-style-loader": "^1.0.0",
-    "vue-template-compiler": "^2.1.10",
+    "vue-template-compiler": "^2.2.1",
     "webpack": "^1.13.2",
     "webpack-dev-middleware": "^1.8.3",
     "webpack-hot-middleware": "^2.12.2",
