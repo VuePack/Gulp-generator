@@ -69,6 +69,8 @@ module.exports = {
     // 禁止使用 var 多次声明同一变量
     "no-redeclare": 0,
     "block-spacing": 0,
+    // 允许 es6模板字符
+    "no-template-curly-in-string": 0,
 
     /**
      * 警告
