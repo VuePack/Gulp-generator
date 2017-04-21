@@ -3,6 +3,7 @@ require('./check-versions')()
 require('shelljs/global')
 env.NODE_ENV = 'production'
 
+var fs = require('fs')
 var path = require('path')
 var config = require('../config')
 var ora = require('ora')
@@ -15,6 +16,8 @@ console.log(
   '  Opening index.html over file:// won\'t work.\n'
 )
 
+// 打包之前先清空dist目录
+clearFolder(path.resolve(__dirname, '../dist/'))
 var spinner = ora('building for production...')
 spinner.start()
 
@@ -34,3 +37,20 @@ webpack(webpackConfig, function (err, stats) {
     chunkModules: false
   }) + '\n')
 })
+
+function clearFolder(path) {
+  var files = [];
+  if (fs.existsSync(path)) {
+    files = fs.readdirSync(path);
+    files.forEach(function (file, index) {
+      var curPath = path + "/" + file;
+      if (fs.statSync(curPath).isDirectory()) {
+        clearFolder(curPath);
+      } else {
+        fs.unlinkSync(curPath);
+        console.log(curPath);
+      }
+    })
+    fs.rmdirSync(path);
+  }
+}
