@@ -127,11 +127,15 @@ module.exports = {
       /**
        * [baseDpr description]
        * @type {Number}
-       * “postcss-px2rem” 适配移动端插件
-       *  font-size: 28px  / *px* / 转换为（data-dpr）
-       *  border: 1px solid #ddd / *no* / 不进行 rem 转换
+       * 字体单位用 `dpx`; 边框单位用 `rpx`; 其他宽度用 px 会自动转换为 rem
+       * .cls {
+            width: 75px;
+            font-size: 12dpx
+            border: 1rpx
+          }
+       *
        */
-      require('postcss-px2rem')({
+      require('postcss-plugins-px2rem')({
         // baseDpr: 2, // base device pixel ratio (default: 2)
         // threeVersion: false, // whether to generate @1x, @2x and @3x version (default: false)
         // remVersion: true, // whether to generate rem version (default: true)
