@@ -1,4 +1,4 @@
-# 移动端多页应用脚手架(支持路由)
+# 移动端多页应用脚手架(支付路由)
 ## 目录
 
 1. [安装](#install)
@@ -12,7 +12,7 @@
 <a name="install"></a>
 ## 1. 安装
 
-**版本（全局安装）**：NODE ：6.9.2， NPM ：3.10.10， webpack ：1.13.1
+**版本（全局安装）**：NODE ：6.10.0，  webpack ：1.13.1
 
 由于 `npm` 安装源太慢，建议换成淘宝 `cnpm` 安装源
 
@@ -50,13 +50,14 @@ cnpm install
     |   |   |   |—— app.vue          单个页面配置 vue
     |   |—— util                     公共函数调用目录
     |   |   |—— ajax.js              公共函数
+    |   |—— views                    路由视图层目录
 
 ## 3.  前置条件
 
 * `NPM` 管理依赖库，第三方的 `js` 文件放在 `assets/js` 下
 * 主要技术 `Vue`，`JavaScript`，`ES6`
 * 创建新的多页面，必须在 `module` 目录下
-   
+
 *格式如下:*
 
     |—— module                       多页面文件目录
@@ -66,7 +67,7 @@ cnpm install
     |   |   |—— member.html          单个页面配置 html
     |   |   |—— member.js            单个页面配置 js
     |   |   |—— app.vue              单个页面配置 vue
-   
+
 <a name="question"></a>
 ## 4. 解决问题
 
@@ -86,10 +87,31 @@ cnpm install
 <a name="help"></a>
 ## 6. 如何使用
 
+* 默认请开启本地服务器 `127端口`
 * 多页应用，`module` 目录下创建多个父级目录实例多个 `html`
 * 统一 `ajax` 库为 `axios`
 * 图标统一用 `iconfont` ，托管在 **http://www.iconfont.cn/** 在线生成阿里 `CDN`，`font.css`
 * 项目使用 `es6` 开发，代码书写规范按照 `.eslintrc.js`
+* 移动端尺寸适配，按照淘宝适配方案。字体书写用 `dpr`单位，进行屏幕 **dpr** 缩小放大；边框书写用 `rpx`单位， 按照物理像素`1px`标准；其他单位长度统一书写用 `px` 会自动转换为 `rem` 单位
+
+```css
+// input
+.cls {
+  width: 75px;
+  font-size: 12dpx
+  border: 1rpx
+}
+
+// output
+.cls {
+  width: 2rem;
+  border: 1px;
+}
+[data-dpr="1"] .cls { font-size: 12px }
+[data-dpr="2"] .cls { font-size: 24px }
+[data-dpr="3"] .cls { font-size: 36px }
+```
+
 
 > 开发
   ```js
