@@ -118,7 +118,7 @@ cnpm install
   npm run dev
   ```
 
-* 默认执行 `module/Index` 目录下访问 **http://localhost:3000/index.html**
+* 默认执行 `module/Index` 目录下访问 **http://localhost:9090/index.html**
 
 > 发布
   ```js
