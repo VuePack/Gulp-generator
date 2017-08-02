@@ -7,7 +7,8 @@
 4. [解决问题](#question)
 5. [前端技术要求](#foreend)
 6. [如何使用](#help)
-7. [不足之处](#deficiency)
+7. [功能](#function)
+8. [不足之处](#deficiency)
 
 <a name="install"></a>
 ## 1. 安装
