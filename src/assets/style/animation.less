@@ -1,0 +1,44 @@
+// 动画
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity .3s
+}
+.fade-enter,
+.fade-leave-active {
+  opacity: 0
+}
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .3s;
+}
+.fade-enter, .fade-leave-active {
+  opacity: 0;
+}
+.slid-enter-active, .slid-leave-active {
+  transition: all .4s;
+}
+.slid-enter, .slid-leave-active {
+  transform: translate3d(2rem, 0, 0);
+  opacity: 0;
+}
+.slid_up-enter-active, .slid_up-leave-active {
+  transition: all .3s;
+}
+.slid_up-enter, .slid_up-leave-active {
+  transform: translate3d(0,10rem,0)
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+.fadeOut {
+  animation-duration: 1s !important;
+  animation-fill-mode: both !important;
+  animation-name: fadeOut !important;
+}
