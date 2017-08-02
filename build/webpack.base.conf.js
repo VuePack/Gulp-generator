@@ -41,10 +41,11 @@ module.exports = {
       'vue$': 'vue/dist/vue.common',
       'src': path.resolve(__dirname, '../src'),
       'assets': path.resolve(__dirname, '../src/assets'),
-      'components': path.resolve(__dirname, '../src/components'),
+      '@': path.resolve(__dirname, '../src/components'),
       'jspath': path.resolve(__dirname, '../src/assets/js'),
       'config': path.resolve(__dirname, '../src/config/'),
-      'util': path.resolve(__dirname, '../src/util/')
+      'util': path.resolve(__dirname, '../src/util/'),
+      'views': path.resolve(__dirname, '../src/views/')
     }
   },
   resolveLoader: {
