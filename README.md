@@ -124,9 +124,17 @@ cnpm install
   ```js
   npm run build
   ```
+  
+<a name="function"></a>
+## 7. 功能
+
+- ajax库添加全局拦截动画
+- 倒计时js组件
+- tabbar等ui组件
+- 表单验证
 
 <a name="deficiency"></a>
-## 7. 不足之处
+## 8. 不足之处
 
 * 完美
 
