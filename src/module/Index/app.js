@@ -2,7 +2,7 @@
  * @Author: Leon
  * @Date: 2017-02-03 14:02:39
  * @Last Modified by: Leon
- * @Last Modified time: 2017-02-04 09:51:44
+ * @Last Modified time: 2017-08-02 15:05:59
  */
 
 import App from './app.vue'
@@ -12,13 +12,13 @@ import store from './manage/store'
 import router from './manage/router'
 import axios from 'axios'
 import 'lib-flexible'
+import Snake from '../../util/preloader'
 
+Vue.use(Snake)
+axios.defaults.timeout = 5000 // 允许ajax超时时间
 window.axios = axios
 
-// import util from 'jspath/common/util'
-// Vue.prototype.utilHelper = util
-
-new Vue({ // eslint-disable-line no-new
+let vm = new Vue({ // eslint-disable-line no-new
   el: '#app',
   store,
   router,
@@ -29,3 +29,23 @@ new Vue({ // eslint-disable-line no-new
     }
   }
 })
+
+// http请求拦截器
+var loadinginstace
+axios.interceptors.request.use(config => {
+  vm.$showSnake()
+  return config
+}, error => {
+  vm.$closeSnake()
+  return Promise.reject(error)
+})
+
+// http响应拦截器
+axios.interceptors.response.use(data => { // 响应成功关闭loading
+  vm.$closeSnake()
+  return data
+}, error => {
+  vm.$closeSnake()
+  return Promise.reject(error)
+})
+

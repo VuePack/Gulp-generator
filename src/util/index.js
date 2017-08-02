@@ -1,41 +1,48 @@
 export default {
-  get(url, data = {}, success = {}) {
-    axios({
-      url: url,
-      params: data,
-      method: 'GET',
-      headers: {
-        'X-SESSIONID': localStorage.sessionid
-      }
-    }).then(res => success(res.data)).catch(() => alert('网络请求失败'))
+  get(url, data = {}, success = () => {}) {
+    this.ajax('GET', url, data, success)
   },
-  post(url, data = {}, success = {}) {
-    axios({
-      url: url,
-      data: data,
-      method: 'POST',
-      headers: {
-        'X-SESSIONID': localStorage.sessionid
-      }
-    }).then(res => success(res.data)).catch(() => alert('网络请求失败'))
+  post(url, data = {}, success = () => {}) {
+    this.ajax('POST', url, data, success)
   },
-  put(url, data = {}, success = {}) {
-    axios({
-      url: url,
-      data: data,
-      method: 'PUT',
-      headers: {
-        'X-SESSIONID': localStorage.sessionid
-      }
-    }).then(res => success(res.data)).catch(() => alert('网络请求失败'))
+  put(url, data = {}, success = () => {}) {
+    this.ajax('PUT', url, data, success)
   },
-  uploadFiles() {
-    axios({
-      method: 'post',
-      url: '/image/',
-      data: new FormData(document.getElementById('uploadForm')[0])
-    }).then(res => {
-      console.log()
-    }).catch(() => alert('网络请求失败'))
+  delete(url, data = {}, success = () => {}) {
+    this.ajax('DELETE', url, data, success)
+  },
+  ajax(type, url, data, success) {
+    let conf = ''
+    if (localStorage.hasOwnProperty('sessionid')) {
+      conf = { 'X-SESSIONID': localStorage.sessionid }
+    }
+
+    if (type === 'GET') {
+      axios({
+        url: url,
+        params: data,
+        method: type,
+        headers: conf
+      }).then(res => {
+        if (res.data.code === 401) {
+          location.href = '/h5/login.html'
+          return
+        }
+        success(res.data)
+      }).catch(() => { alert('网络请求失败，请重试') })
+    } else {
+      axios({
+        url: url,
+        data: data,
+        method: type,
+        headers: conf
+      }).then(res => {
+        if (res.data.code === 401) {
+          location.href = '/h5/login.html'
+          return
+        }
+        success(res.data)
+      }).catch(() => { alert('网络请求失败，请重试') })
+    }
   }
 }

@@ -12,8 +12,8 @@
 </template>
 <script>
   import { mapState } from 'vuex'
-  import Tabbar from 'components/tabbar/tabbar'
-  import TabbarItem from 'components/tabbar/tabbar-item'
+  import Tabbar from '@/tabbar/tabbar'
+  import TabbarItem from '@/tabbar/tabbar-item'
 
   export default {
     name: 'form',
