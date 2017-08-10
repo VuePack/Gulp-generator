@@ -9,7 +9,6 @@
   var flexible = lib.flexible || (lib.flexible = {});
 
   if (metaEl) {
-    console.warn('将根据已有的meta标签来设置缩放比例');
     var match = metaEl.getAttribute('content').match(/initial\-scale=([\d\.]+)/);
     if (match) {
       scale = parseFloat(match[1]);
@@ -33,10 +32,9 @@
 
   if (!dpr && !scale) {
     var isAndroid = win.navigator.appVersion.match(/android/gi);
-    var isChrome = win.chrome;
     var isIPhone = win.navigator.appVersion.match(/iphone/gi);
     var devicePixelRatio = win.devicePixelRatio;
-    if (isIPhone || isChrome) {
+    if (isIPhone) {
       // iOS下，对于2和3的屏，用2倍的方案，其余的用1倍方案
       if (devicePixelRatio >= 3 && (!dpr || dpr >= 3)) {
         dpr = 3;
