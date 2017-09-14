@@ -2,7 +2,7 @@
  * @Author: Leon
  * @Date: 2017-02-03 14:03:01
  * @Last Modified by: Leon
- * @Last Modified time: 2017-08-02 15:02:18
+ * @Last Modified time: 2017-09-14 14:51:08
  */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
@@ -16,10 +16,10 @@ Vue.use(VueRouter)
  * 2.about.js ...
  */
 
-const Home = r => require.ensure([], () => r(require('views/home')))
-const Category = r => require.ensure([], () => r(require('views/category')))
-const Cart = r => require.ensure([], () => r(require('views/cart')))
-const About = r => require.ensure([], () => r(require('views/about')))
+const Home = r => require.ensure([], () => r(require('@/views/home')))
+const Category = r => require.ensure([], () => r(require('@/views/category')))
+const Cart = r => require.ensure([], () => r(require('@/views/cart')))
+const About = r => require.ensure([], () => r(require('@/views/about')))
 
 const baseUrl = '' // 多页面路径配置
 

@@ -12,8 +12,8 @@
 </template>
 <script>
   import { mapState } from 'vuex'
-  import Tabbar from '@/tabbar/tabbar'
-  import TabbarItem from '@/tabbar/tabbar-item'
+  import Tabbar from '@/components/tabbar/tabbar'
+  import TabbarItem from '@/components/tabbar/tabbar-item'
 
   export default {
     name: 'form',
@@ -25,12 +25,7 @@
       TabbarItem
     },
     watch: {
-      '$route' (to, from) {
-        // console.log(to)
-        // const toDepth = to.path.split('/').length
-        // const fromDepth = from.path.split('/').length
-        // this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-      }
+      '$route' (to, from) {}
     }
   }
 

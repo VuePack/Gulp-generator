@@ -4,7 +4,7 @@
   </div>
 </template>
 <script>
-import util from 'util'
+import { topics } from '@/api/getData'
 
 export default {
   name: '',
@@ -15,8 +15,9 @@ export default {
   props: {},
   computed: {},
   methods: {},
-  mounted() {
-    util.get('/api/v1/topics/', {}, res => {})
+  async created() {
+    const res = await topics()
+    console.log(res)
   }
 }
 </script>
