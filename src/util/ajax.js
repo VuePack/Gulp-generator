@@ -22,6 +22,8 @@ let HTTP = (type, url, params, config = {
     if (err.response && err.response.status === 401) {
       // vm.$router.replace('/login')
       sessionStorage.clear()
+    } else {
+//       vm.$message({ type: 'error', message: '网络连接失败，请重试' })
     }
   })
 }
