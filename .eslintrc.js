@@ -71,6 +71,13 @@ module.exports = {
     "block-spacing": 0,
     // 允许 es6模板字符
     "no-template-curly-in-string": 0,
+    "no-unneeded-ternary": 0,
+    // 强制花括号内换行符的一致性
+    "object-curly-newline":0,
+    // 强制在花括号中使用一致的空格
+    "object-curly-spacing": 0,
+    // 强制将对象的属性放在不同的行上
+    "object-property-newline":0,
 
     /**
      * 警告
@@ -82,7 +89,7 @@ module.exports = {
     // 禁止空语句块
     "no-empty": 1,
     // 不允许在变量定义之前使用它们
-    "no-use-before-define": [1, "nofunc"],
+    "no-use-before-define": [0, "nofunc"],
 
 
 
