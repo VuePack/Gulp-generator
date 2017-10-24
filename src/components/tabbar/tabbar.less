@@ -1,11 +1,20 @@
 @import '../../assets/style/_vars.less';
-
 .tabbar {
   display: flex;
   text-align: center;
   background-color: #f9f9f9;
-  padding: 10px 0;
-  border-top: 1dpx solid #dedede;
+  padding: .1rem 0;
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: 0;
+    top: 0;
+    left: 0;
+    width: 100%;
+    border-top: 1px solid #c9c9c9;
+    transform: scaleY(.5);
+    transform-origin: 0 0;
+  }
   &.flxed {
     position: fixed;
     left: 0;
@@ -13,8 +22,9 @@
     bottom: 0;
     z-index: 1
   }
-  .active{
-    .icon,.label{
+  .active {
+    .icon,
+    .label {
       color: @danger;
     }
   }
@@ -24,11 +34,11 @@
     align-items: center;
     color: @a6;
   }
-  .icon{
+  .icon {
     display: block;
-    color: @80;
+    font-size: .5rem;
   }
-  .label{
-    font-size: 22px;
+  .label {
+    font-size: .24rem;
   }
 }

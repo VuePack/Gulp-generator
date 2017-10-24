@@ -2,22 +2,26 @@
  * @Author: Leon
  * @Date: 2017-02-03 14:02:39
  * @Last Modified by: Leon
- * @Last Modified time: 2017-09-14 14:53:01
+ * @Last Modified time: 2017-10-24 21:15:12
  */
 
-import App from './app.vue'
 import Vue from 'vue'
+import axios from 'axios'
+import dtime from 'time-formater'
+// import vueg from 'vueg'
+// import 'vueg/css/transition-min.css'
 
+import App from './app.vue'
 import store from './manage/store'
 import router from './manage/router'
-import axios from 'axios'
-import 'lib-flexible'
 import Snake from '../../util/preloader'
+import http from '@/util/ajax'
+import { Confirm, Alert, Toast, Notify, Loading } from 'vue-ydui/dist/lib.rem/dialog'
 
-Vue.use(Snake)
-axios.defaults.timeout = 5000 // 允许ajax超时时间
+Vue.use(Snake, router)
+Vue.prototype.$dialog = { confirm: Confirm, alert: Alert, toast: Toast, notify: Notify, loading: Loading }
 
-let vm = new Vue({ // eslint-disable-line no-new
+const vm = new Vue({
   el: '#app',
   store,
   router,
@@ -29,25 +33,22 @@ let vm = new Vue({ // eslint-disable-line no-new
   }
 })
 
-window.axios = axios
 window.vm = vm
+window.http = http
+window.dtime = dtime
+axios.defaults.timeout = 5000
 
 // http请求拦截器
-var loadinginstace
 axios.interceptors.request.use(config => {
-  vm.$showSnake()
-  return config
+  vm.$showSnake(); return config
 }, error => {
   vm.$closeSnake()
   return Promise.reject(error)
 })
 
 // http响应拦截器
-axios.interceptors.response.use(data => { // 响应成功关闭loading
-  vm.$closeSnake()
-  return data
+axios.interceptors.response.use(data => {
+  vm.$closeSnake(); return data
 }, error => {
-  vm.$closeSnake()
-  return Promise.reject(error)
+  vm.$closeSnake(); return Promise.reject(error)
 })
-

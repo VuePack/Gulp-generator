@@ -13,7 +13,7 @@
 <a name="install"></a>
 ## 1. 安装
 
-**版本（全局安装）**：NODE ：6.10.0
+**版本（全局安装）**：NODE ：8.5.0
 
 由于 `npm` 安装源太慢，建议换成淘宝 `cnpm` 安装源
 
@@ -45,13 +45,13 @@ cnpm install
     |   |—— module                   多页面文件目录
     |   |   |—— Member               多页面父级目录
     |   |   |   |—— component        Member 所属组件目录
+    |   |   |   |—— Views            Member 所属路由目录
     |   |   |   |—— manage           Member 所属配置路由状态管理目录
     |   |   |   |—— member.html      单个页面配置 html
     |   |   |   |—— member.js        单个页面配置 js
     |   |   |   |—— app.vue          单个页面配置 vue
     |   |—— util                     公共函数调用目录
     |   |   |—— ajax.js              公共函数
-    |   |—— views                    路由视图层目录
 
 ## 3.  前置条件
 
@@ -64,6 +64,7 @@ cnpm install
     |—— module                       多页面文件目录
     |   |—— Member                   多页面父级目录
     |   |   |—— components           Member 所属组件目录
+    |   |   |—— Views                Member 所属路由目录
     |   |   |—— manage               Member 所属配置路由状态管理目录
     |   |   |—— member.html          单个页面配置 html
     |   |   |—— member.js            单个页面配置 js
@@ -93,24 +94,17 @@ cnpm install
 * 统一 `ajax` 库为 `axios`
 * 图标统一用 `iconfont` ，托管在 **http://www.iconfont.cn/** 在线生成阿里 `CDN`，`font.css`
 * 项目使用 `es6` 开发，代码书写规范按照 `.eslintrc.js`
-* 移动端尺寸适配，按照淘宝适配方案。字体书写用 `dpr`单位，进行屏幕 **dpr** 缩小放大；边框书写用 `rpx`单位， 按照物理像素`1px`标准；其他单位长度统一书写用 `px` 会自动转换为 `rem` 单位
+* 移动端尺寸适配，按照淘宝flexible适配方案。由于引入YDUI库，视觉稿按照750适配，rem计算方式：设计图尺寸px / 100 = 实际rem  【例: 100px = 1rem，32px = .32rem】
 
 ```css
-// input
-.cls {
-  width: 75px;
-  font-size: 12dpx
-  border: 1rpx
+// border 1PX适配
+{
+  border-top: 1px solid #c9c9c9;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+  -webkit-transform-origin: 0 0;
+  transform-origin: 0 0;
 }
-
-// output
-.cls {
-  width: 2rem;
-  border: 1px;
-}
-[data-dpr="1"] .cls { font-size: 12px }
-[data-dpr="2"] .cls { font-size: 24px }
-[data-dpr="3"] .cls { font-size: 36px }
 ```
 
 
@@ -125,7 +119,7 @@ cnpm install
   ```js
   npm run build
   ```
-  
+
 <a name="function"></a>
 ## 7. 功能
 

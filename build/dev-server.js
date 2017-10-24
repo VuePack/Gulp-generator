@@ -43,12 +43,12 @@ compiler.plugin('compilation', function (compilation) {
   })
 })
 
-const context = config.dev.context
+const confdev = config.dev
 const options = {
-  target: 'https://cnodejs.org',
+  target: confdev.target,
   changeOrigin: true
 }
-app.use(proxyMiddleware(context, options))
+app.use(proxyMiddleware(confdev.context, options))
 
 // handle fallback for HTML5 history API
 app.use(require('connect-history-api-fallback')())

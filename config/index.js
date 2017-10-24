@@ -19,17 +19,10 @@ module.exports = {
   dev: {
     env: require('./dev.env'),
     port: 9090,
+    autoOpenBrowser: true,
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    // proxyTable: {
-    //   '/api': {
-    //     target: 'https://cnodejs.org/api/',
-    //     changeOrigin:true,
-    //     pathRewrite:{
-    //         '^/api':''
-    //     }
-    //   }
-    // },
+    target: 'https://cnodejs.org', // 本地
     context:[
       '/api'
     ],

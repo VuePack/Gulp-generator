@@ -9,9 +9,7 @@ Snake.install = function(Vue, options) {
   }
   Vue.prototype.$closeSnake = (tips) => {
     tpl.classList.add('fadeOut')
-    setTimeout(() => {
-      document.body.removeChild(tpl)
-    }, 800)
+    document.body.removeChild(tpl)
   }
 }
 

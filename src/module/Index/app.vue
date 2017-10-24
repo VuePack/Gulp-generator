@@ -11,36 +11,28 @@
   </div>
 </template>
 <script>
-  import { mapState } from 'vuex'
-  import Tabbar from '@/components/tabbar/tabbar'
-  import TabbarItem from '@/components/tabbar/tabbar-item'
+import { mapState } from 'vuex'
+import Tabbar from '@/components/tabbar/tabbar'
+import TabbarItem from '@/components/tabbar/tabbar-item'
 
-  export default {
-    name: 'form',
-    computed: {
-      ...mapState(['urlItems'])
-    },
-    components: {
-      Tabbar,
-      TabbarItem
-    },
-    watch: {
-      '$route' (to, from) {}
-    }
+export default {
+  name: 'form',
+  computed: {
+    ...mapState(['urlItems'])
+  },
+  components: {
+    Tabbar,
+    TabbarItem
+  },
+  watch: {
+    '$route'(to, from) { }
   }
+}
 
 </script>
 <style lang="less">
-  @import '../../assets/style/likr.less';
-  @import './index.less';
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s
+@import "../../assets/style/likr.less";
+.v-link-active {
+  color: #f66 !important;
 }
-.fade-enter, .fade-leave-active {
-  opacity: 0
-}
-  .v-link-active {
-    color: #f66 !important
-  }
 </style>
