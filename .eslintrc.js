@@ -78,6 +78,8 @@ module.exports = {
     "object-curly-spacing": 0,
     // 强制将对象的属性放在不同的行上
     "object-property-newline":0,
+    // 表达式可以使用布尔值
+    "no-unneeded-ternary": 0,
 
     /**
      * 警告
