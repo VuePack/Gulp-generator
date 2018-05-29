@@ -36,19 +36,3 @@ const vm = new Vue({
 window.vm = vm
 window.http = http
 window.dtime = dtime
-axios.defaults.timeout = 5000
-
-// http请求拦截器
-axios.interceptors.request.use(config => {
-  vm.$showSnake(); return config
-}, error => {
-  vm.$closeSnake()
-  return Promise.reject(error)
-})
-
-// http响应拦截器
-axios.interceptors.response.use(data => {
-  vm.$closeSnake(); return data
-}, error => {
-  vm.$closeSnake(); return Promise.reject(error)
-})
