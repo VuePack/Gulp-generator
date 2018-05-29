@@ -2,11 +2,10 @@
  * @Author: Leon
  * @Date: 2017-08-20 00:16:20
  * @Last Modified by: Leon
- * @Last Modified time: 2018-05-25 14:03:21
+ * @Last Modified time: 2018-05-29 18:33:43
  */
 
 import axios from 'axios'
-import { Loading } from 'element-ui'
 
 axios.defaults.baseURL = '/api'
 axios.create({
@@ -20,20 +19,14 @@ axios.create({
 /**
  * 请求拦截
  */
-let loadinginstace
 axios.interceptors.request.use(config => {
   if (localStorage.hasOwnProperty('token')) {
     config.headers['token'] = localStorage.getItem('token')
   }
-  loadinginstace = Loading.service({
-    lock: true,
-    text: '拼命加载中...',
-    spinner: 'el-icon-loading',
-    background: 'rgba(255, 255, 255, 0.7)'
-  })
+  vm.$showSnake()
   return config
 }, error => {
-  loadinginstace.close()
+  vm.$closeSnake()
   return Promise.reject(error)
 })
 
@@ -41,57 +34,36 @@ axios.interceptors.request.use(config => {
  * 响应拦截
  */
 axios.interceptors.response.use(response => {
-  loadinginstace.close()
+  vm.$closeSnake()
   return response
 }, error => {
   if (error && error.response) {
     switch (error.response.status) {
       case 401:
-        vm.$message({
-          type: 'error',
-          message: '未授权，请重新登录'
-        })
+        vm.$dialog.toast({ mes: '未授权，请重新登录!', timeout: 1500, icon: 'error' })
         localStorage.clear()
         vm.$router.replace('/login')
         break
       case 404:
-        vm.$message({
-          type: 'error',
-          message: '404 请求错误,未找到该资源'
-        })
+        vm.$dialog.toast({ mes: '404 请求错误,未找到该资源!', timeout: 1500, icon: 'error' })
         break
       case 502:
-        vm.$message({
-          type: 'error',
-          message: '502 网络错误'
-        })
-        break;
+        vm.$dialog.toast({ mes: '502 网络错误!', timeout: 1500, icon: 'error' })
+        break
       case 503:
-        vm.$message({
-          type: 'error',
-          message: '503 服务不可用'
-        })
+        vm.$dialog.toast({ mes: '503 服务不可用!', timeout: 1500, icon: 'error' })
         break
       case 504:
-        vm.$message({
-          type: 'error',
-          message: '504 网络超时'
-        })
+        vm.$dialog.toast({ mes: '504 网络超时求!', timeout: 1500, icon: 'error' })
         break
       case 505:
-        vm.$message({
-          type: 'error',
-          message: '505 http版本不支持该请求'
-        })
+        vm.$dialog.toast({ mes: '505 http版本不支持该请求!', timeout: 1500, icon: 'error' })
         break
     }
   } else {
-    vm.$message({
-      type: 'error',
-      message: '连接到服务器失败'
-    })
+    vm.$dialog.toast({ mes: '连接到服务器失败!', timeout: 1500, icon: 'error' })
   }
-  loadinginstace.close()
+  vm.$closeSnake()
   return Promise.reject(error)
 })
 
@@ -101,10 +73,7 @@ let HTTP = (type, url, params, config = {
   return axios[type](...args).then(
     res => {
       if (res.data && res.data.code !== 0) {
-        vm.$message({
-          type: 'error',
-          message: res.data.msg
-        })
+        vm.$dialog.toast({ mes: res.data.msg, timeout: 1500, icon: 'error' })
       }
       return res.data
     }

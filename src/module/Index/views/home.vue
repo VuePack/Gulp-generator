@@ -9,7 +9,7 @@ export default {
     }
   },
   async created() {
-    const res = await http.get('/api/v1/topics/')
+    const res = await this.$http.get('/v1/topics/')
   },
   components: {},
   props: [],
