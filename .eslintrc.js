@@ -171,6 +171,8 @@ module.exports = {
     "semi": 1,
     // 禁止抛出非异常字面量
     "no-throw-literal": 2,
+    // 一行占据太多就换行
+    "operator-linebreak": [2, "before"],
 
     // 禁止不必要的 .call() 和 .apply()
     "no-useless-call": 2,
