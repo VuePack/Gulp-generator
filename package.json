@@ -18,7 +18,7 @@
     "fastclick": "^1.0.6",
     "lib-flexible": "^0.3.2",
     "marked": "^0.3.6",
-    "moment": "^2.22.1",
+    "moment": "^2.11.0",
     "qs": "^6.5.1",
     "vue": "^2.5.16",
     "vue-router": "^3.0.1",
